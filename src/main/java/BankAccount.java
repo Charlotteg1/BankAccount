@@ -4,13 +4,17 @@ public class BankAccount {
     private String dateOfBirth;
     private String accountNumber;
     private double balance = 0;
+    private String accountType;
+//    private double overdraft;
 
-    public BankAccount(String firstName, String lastName, String dateOfBirth,String accountNumber, double balance){
+    public BankAccount(String firstName, String lastName, String dateOfBirth,String accountNumber, double balance, String accountType){ //double overdraft
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth =dateOfBirth;
         this.accountNumber= accountNumber;
         this.balance = balance;
+        this.accountType= accountType;
+//        this.overdraft = overdraft;
     }
     public String getFirstName(){
         return this.firstName;
@@ -57,10 +61,14 @@ public class BankAccount {
     public void withdrawal(double amount){
         this.balance =this.balance - amount;
     }
-    public void interest(){
-        this.balance = this.balance*1.03;
+    public void payInterest(){
+        if(this.accountType.equals("savings")) {
+            this.balance = this.balance * 1.05;
+        }
+        if(this.accountType.equals("current")) {
+            this.balance = this.balance * 1.03;
+        }
     }
-
 
 
 }
